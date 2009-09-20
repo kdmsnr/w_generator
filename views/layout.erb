@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="content-style-type" content="text/css" />
+    <meta http-equiv="content-script-type" content="text/javascript" />
+    <title>顔Wジェネレータ</title>
+    <style type="text/css">
+      .input {
+        background-color: #E6E6FA;
+        width:400px;
+        height:30px;
+        font-size:120%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>顔Wジェネレータ</h1>
+
+    <%= yield %>
+
+    <hr />
+    <p>
+      <a href="/">HOME</a> |
+      <a href="/w/list">一覧</a> |
+      <a href="http://twitter.com/?status=@kdmsnr%20">お問い合せ via twitter</a> |
+      <a href="http://github.com/kdmsnr/w_generator/">ソースコードはこちら</a>
+    </p>
+  </body>
+</html>

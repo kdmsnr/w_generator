@@ -1,0 +1,19 @@
+<div class="total">
+Total: <%= @pagenate.total_entries %> photos
+</div>
+
+<div class="pagenate">
+<%= @pagenate.to_html %>
+</div>
+
+<div class="entries">
+<% @photos.each do |photo| %>
+  <a href="/w/<%= photo %>">
+  <img src="/w/<%= photo %>" alt="<%= photo %>" height="200" />
+  </a>
+<% end %>
+</div>
+
+<div class="pagenate">
+<%= @pagenate.to_html %>
+</div>
