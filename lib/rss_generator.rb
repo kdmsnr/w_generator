@@ -4,9 +4,13 @@ require 'hpricot'
 require 'rss'
 
 class PodcastItem
-  attr_accessor :title, :mp3
-  def initialize(title, mp3)
-    @title, @mp3 = title, mp3
+  attr_accessor :title, :mp3, :date
+  def initialize(title, mp3, date)
+    @title, @mp3, @date = title, mp3, date
+  end
+
+  def date
+    Time.mktime(*@date.split(/\./))
   end
 end
 
@@ -25,8 +29,9 @@ class RssGenerator
     items = []
     doc = Hpricot(open("http://windwave.jp/#{@genre}/index.php"))
     (doc/"//script[@language='javascript']").each do |i|
+      date = i.parent.parent.previous_sibling.children[1].innerHTML
       i.inner_html.scan(/encodeURI\('([^,]*),(.*\.mp3)'\)/).each do |v|
-        item = PodcastItem.new(v[0], v[1])
+        item = PodcastItem.new(v[0], v[1], date)
         items << item
       end
     end
@@ -47,10 +52,11 @@ class RssGenerator
 
       get_items.each do |i|
         maker.items.new_item do |item|
-          item.link = i.mp3
+          item.link = URI.encode(i.mp3)
           item.title = i.title
+          item.date = i.date
           item.enclosure.type = "audio/mpeg"
-          item.enclosure.url = i.mp3
+          item.enclosure.url = URI.encode(i.mp3)
           item.enclosure.length = 1
         end
       end
@@ -65,5 +71,5 @@ class RssGenerator
 end
 
 if __FILE__ == $0
-  p RssGenerator.new("healing").generate
+  RssGenerator.new("healing").get_items
 end
