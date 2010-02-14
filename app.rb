@@ -1,8 +1,9 @@
+# -*- coding: utf-8 -*-
 require 'rubygems'
 require 'sinatra'
-require 'hpricot'
 require 'open-uri'
-require 'lib/converter.rb'
+require 'lib/converter'
+require 'lib/rss_generator'
 
 get '/' do
   erb :index
@@ -41,4 +42,12 @@ get '/w/:id' do
   File.open("./result/#{File.basename(params[:id])}") do |f|
     f.read
   end
+end
+
+get '/podcast/:genre.rss' do |genre|
+  raise Sinatra::NotFound unless RssGenerator::TITLES.keys.include?(genre.to_s)
+
+  content_type 'application/rss+xml', :charset => 'utf-8'
+  @rss = RssGenerator.new(genre).generate
+  erb :rss, :layout => :false
 end
