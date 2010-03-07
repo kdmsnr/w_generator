@@ -18,7 +18,8 @@ class RssGenerator
   TITLES = {
     "healing" => "園咲若菜のヒーリングプリンセス",
     "groove" => "FU-TO Hit on Groove",
-    "ippon" => "向い風 一本勝負!!"
+    "ippon" => "向い風 一本勝負!!",
+    "heart" => "QueenとElizabethの白抜きハートマーク!!"
   }
 
   def initialize(genre)
