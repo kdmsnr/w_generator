@@ -47,6 +47,11 @@ get '/w/list' do
   erb :list
 end
 
+delete '/w/:id' do
+  File.unlink("./result/#{File.basename(params[:id])}")
+  redirect "/w/list"
+end
+
 get '/w/:id' do
   content_type :jpg
   File.open("./result/#{File.basename(params[:id])}") do |f|

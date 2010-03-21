@@ -1,19 +1,26 @@
 <div class="total">
-Total: <%= @pagenate.total_entries %> photos
+	Total: <%= @pagenate.total_entries %> photos
 </div>
 
 <div class="pagenate">
-<%= @pagenate.to_html %>
+	<%= @pagenate.to_html %>
 </div>
 
 <div class="entries">
-<% @photos.each do |photo| %>
-  <a href="/w/<%= photo %>">
-  <img src="/w/<%= photo %>" alt="<%= photo %>" height="200" />
-  </a>
-<% end %>
+	<% @photos.each do |photo| %>
+		<div class="entry" style="float:left; background-color:#ff9; margin-left:20px;">
+			<a href="/w/<%= photo %>">
+				<img src="/w/<%= photo %>" alt="<%= photo %>" height="200" />
+			</a>
+			<form method="post" action="/w/<%= photo %>" style="display:inline;">
+				<input type="hidden" name="_method" value="delete" />
+				<button type="submit" onclick="return confirm('really?');">削除</button>
+			</form>
+		</div>
+	<% end %>
+	<br clear="both" />
 </div>
 
 <div class="pagenate">
-<%= @pagenate.to_html %>
+	<%= @pagenate.to_html %>
 </div>
