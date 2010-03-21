@@ -5,20 +5,15 @@
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta http-equiv="content-style-type" content="text/css" />
 		<meta http-equiv="content-script-type" content="text/javascript" />
-		<title>顔Wジェネレータ</title>
-		<style type="text/css">
-			.input {
-			background-color: #E6E6FA;
-			width:400px;
-			height:30px;
-			font-size:120%;
-			}
-		</style>
-	</head>
-	<body>
-		<h1>顔Wジェネレータ</h1>
-
-		<%= yield %>
-		<%= partial :_footer %>
-	</body>
+		<title>WIND WAVE PODCAST</title>
+		<body>
+			<h1>WIND WAVE PODCAST</h1>
+			<p>iTunesなどでお使い下さい。</p>
+			<ul>
+				<% @channels.each do |k, v| %>
+					<li><a href="<%=h k %>.rss"><%=h v %></a></li>
+				<% end %>
+			</ul>
+			<%= partial :_footer %>
+		</body>
 </html>

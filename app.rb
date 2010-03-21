@@ -5,6 +5,16 @@ require 'open-uri'
 require 'lib/converter'
 require 'lib/rss_generator'
 
+helpers do
+  include Rack::Utils
+  alias_method :h, :escape_html
+  alias_method :u, :escape
+
+  def partial(page, options={})
+    erb page, options.merge!(:layout => false)
+  end
+end
+
 get '/' do
   erb :index
 end
@@ -42,6 +52,15 @@ get '/w/:id' do
   File.open("./result/#{File.basename(params[:id])}") do |f|
     f.read
   end
+end
+
+get '/podcast' do
+  redirect "/podcast/"
+end
+
+get '/podcast/' do
+  @channels = RssGenerator::TITLES
+  erb :podcast_index, :layout => :false
 end
 
 get '/podcast/:genre.rss' do |genre|
