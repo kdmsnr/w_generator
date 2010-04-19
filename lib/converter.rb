@@ -22,7 +22,8 @@ class Converter
     result = background.composite(right, NorthWestGravity, OverCompositeOp)
     result = result.composite(left, NorthEastGravity, OverCompositeOp)
     result.format = "JPEG"
-    filename = Digest::SHA1.hexdigest(@left + @right)
+    filename = Digest::SHA1.hexdigest(@left + @right +
+                                      @left_color + @right_color)
     result.write("./result/" + filename)
     return filename
   end

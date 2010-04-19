@@ -25,7 +25,7 @@ post '/w' do
     conv = Converter.new(params[:left], params[:right],
                          params[:left_color], params[:right_color])
     filename = conv.convert
-    redirect "/w/#{filename}"
+    redirect "/w/list" # "/w/#{filename}"
   rescue
     redirect "/"
   end
