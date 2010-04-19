@@ -22,7 +22,8 @@ end
 post '/w' do
   begin
     raise unless /\Ahttp/ =~ params[:left] and /\Ahttp/ =~ params[:right]
-    conv = Converter.new(params[:left], params[:right])
+    conv = Converter.new(params[:left], params[:right],
+                         params[:left_color], params[:right_color])
     filename = conv.convert
     redirect "/w/#{filename}"
   rescue

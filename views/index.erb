@@ -1,15 +1,56 @@
-    <p>
-      画像のURLを入力して［変身］ボタンを押してください。<br />
-    </p>
+<p>
+	画像のURLを入力して［変身］ボタンを押してください。<br />
+</p>
 
-    <form method="post" action="/w">
-      <div>
-      左<input type="text" class="input" name="left" />
-      右<input type="text" class="input" name="right" />
-      <input type="submit" value="変身" />
-      </div>
-    </form>
+<form method="post" action="/w">
 
-    <p>
-      これまでの作品は<a href="/w/list">一覧ページ</a>でご覧いただけます。
-    </p>
+	<div>
+		<label>
+		フィリップ<input type="text" class="input" name="right" />
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="right_color" value="#00FF00" checked="checked" />
+			サイクロン
+		</label>
+		<label>
+			<input type="radio" name="right_color" value="#FF0000" />
+			ヒート
+		</label>
+		<label>
+			<input type="radio" name="right_color" value="#FFFF00" />
+			ルナ
+		</label>
+		<label>
+			<input type="radio" name="right_color" value="#FFFFFF" />
+			ファング
+		</label>
+	</div>
+
+	<div>
+		<label>
+		左翔太郎<input type="text" class="input" name="left" />
+		</label>
+		<br />
+		<label>
+			<input type="radio" name="left_color" value="#000000" checked="checked" />
+			ジョーカー
+		</label>
+		<label>
+			<input type="radio" name="left_color" value="#C0C0C0" />
+			メタル
+		</label>
+		<label>
+			<input type="radio" name="left_color" value="#0088FF" />
+			トリガー
+		</label>
+	</div>
+
+	<div>
+		<input type="submit" value="変身" />
+	</div>
+</form>
+
+<p>
+	これまでの作品は<a href="/w/list">一覧ページ</a>でご覧いただけます。
+</p>
